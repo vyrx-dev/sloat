@@ -33,4 +33,8 @@ function M.alive()
   return term:valid_buf()
 end
 
+function M.is_open()
+  return term:valid_win()
+end
+
 return M

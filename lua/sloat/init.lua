@@ -30,13 +30,10 @@ function M.kill()
   local float = require('sloat.float')
   local bottom = require('sloat.bottom')
 
-  if not float.alive() and not bottom.alive() then
+  if float.is_open() then
+    float.kill()
+    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
     return
   end
-
-  float.kill()
-  bottom.kill()
-  vim.notify('[sloat] terminals killed', vim.log.levels.INFO)
-end
 
 return M
