@@ -1,4 +1,4 @@
-# sloat.nvim
+# sloat
 
 **Minimal float/bottom terminal plugin for Neovim.** Persists across buffers. ~250 lines.
 
