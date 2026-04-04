@@ -1,21 +1,21 @@
 # sloat.nvim
 
-Minimal float/bottom terminal plugin for Neovim. Persists across buffers. ~250 lines.
+**Minimal float/bottom terminal plugin for Neovim.** Persists across buffers. ~250 lines.
+
+![sloat](https://github.com/vyrx-dev/sloat/raw/main/assets/sloat.gif)
 
 ## Features
 
-- Toggle a centered floating terminal
-- Toggle a bottom-split terminal
-- Both terminals persist when switching buffers
-- Tiny footprint, no dependencies
-
-![sloat](https://github.com/vyrx-dev/sloat/raw/main/assets/sloat.gif)
+- Toggle a centered **floating terminal**
+- Toggle a **bottom-split terminal**
+- Both terminals **persist** when switching buffers
+- Tiny footprint, **no dependencies**
 
 ## Requirements
 
 - Neovim >= 0.10
 
-## Installation
+## Install
 
 ### lazy.nvim (recommended)
 
@@ -71,19 +71,13 @@ When using lazy.nvim, pass options through the `opts` field in your plugin spec 
 
 ## Usage
 
-| Command | Description |
-| --- | --- |
-| `:Sloat float` | Toggle centered floating terminal |
-| `:Sloat bottom` | Toggle bottom-split terminal |
-| `:Sloat kill` | Destroy both terminals and their buffers |
+```
+:Sloat float    toggle floating terminal
+:Sloat bottom   toggle bottom terminal
+:Sloat kill     destroy both terminals
+```
 
-In any terminal buffer, press `<Esc><Esc>` to leave terminal mode, then use `;d` to kill it.
-
-## Health Check
-
-Run `:checkhealth sloat` to verify everything is set up correctly.
-
-For the full config reference and API docs, see `:help sloat` in Neovim.
+Press `<Esc><Esc>` to leave terminal mode.
 
 ## License
 
