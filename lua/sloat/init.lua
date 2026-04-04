@@ -36,4 +36,23 @@ function M.kill()
     return
   end
 
+  if bottom.is_open() then
+    bottom.kill()
+    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
+    return
+  end
+
+  if float.alive() then
+    float.kill()
+    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
+    return
+  end
+
+  if bottom.alive() then
+    bottom.kill()
+    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
+    return
+  end
+end
+
 return M

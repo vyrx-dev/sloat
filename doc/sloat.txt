@@ -1,0 +1,64 @@
+*sloat.txt*  Minimal float/bottom terminal plugin for Neovim          *sloat*
+
+Author: vyrx
+License: MIT
+
+==============================================================================
+INTRODUCTION
+
+sloat.nvim provides toggleable float and bottom terminals that persist across
+buffers. ~250 lines, no bloat.
+
+Requirements: Neovim >= 0.10
+
+==============================================================================
+SETUP                                                            *sloat-setup*
+
+Works without setup. All config is optional.
+
+>lua
+    require('sloat').setup({
+      float = {
+        width = 0.8,        -- float width (0-1 for %, or integer for cols)
+        height = 0.8,       -- float height (0-1 for %, or integer for rows)
+        border = 'rounded', -- border style (see |nvim_open_win|)
+      },
+      bottom = {
+        height = 15,        -- bottom split height in lines
+      },
+      root_patterns = { '.git', 'Makefile', 'package.json' },
+    })
+<
+
+For `border` options, see |nvim_open_win|: `'none'`, `'single'`, `'double'`,
+`'rounded'`, `'solid'`, `'shadow'`, or a custom 8-char table.
+
+==============================================================================
+COMMANDS                                                      *sloat-commands*
+
+:Sloat float                                                    *:Sloat-float*
+    Toggle centered floating terminal.
+
+:Sloat bottom                                                  *:Sloat-bottom*
+    Toggle bottom-split terminal.
+
+:Sloat kill                                                      *:Sloat-kill*
+    Kill the currently open terminal (or its hidden buffer).
+
+==============================================================================
+API                                                                *sloat-api*
+
+require('sloat').float()                                       *sloat.float()*
+    Toggle floating terminal.
+
+require('sloat').bottom()                                     *sloat.bottom()*
+    Toggle bottom terminal.
+
+require('sloat').kill()                                         *sloat.kill()*
+    Kill the active terminal.
+
+require('sloat').setup({opts})                                 *sloat.setup()*
+    Configure sloat. Optional.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:

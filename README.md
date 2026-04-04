@@ -55,6 +55,8 @@ Inside any terminal buffer, press `<Esc><Esc>` to leave terminal mode, then `;d`
 :checkhealth sloat
 ```
 
+For full config options and API reference, see `:help sloat` in Neovim.
+
 ## License
 
 MIT
