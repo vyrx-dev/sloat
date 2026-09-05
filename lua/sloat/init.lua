@@ -4,14 +4,14 @@ local M = {}
 
 M.config = {
   float = {
-    width = 0.8,
-    height = 0.8,
+    width = 0.5,
+    height = 0.6,
     border = 'rounded',
   },
   bottom = {
     height = 15,
   },
-  root_patterns = { '.git', 'Makefile', 'package.json' },
+  root_patterns = { '.git', 'Makefile', 'package.json', 'Cargo.toml', 'go.mod' },
 }
 
 function M.setup(opts)
@@ -29,29 +29,13 @@ end
 function M.kill()
   local float = require('sloat.float')
   local bottom = require('sloat.bottom')
+  local killed = false
 
-  if float.is_open() then
-    float.kill()
-    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
-    return
-  end
+  if float.alive() then float.kill(); killed = true end
+  if bottom.alive() then bottom.kill(); killed = true end
 
-  if bottom.is_open() then
-    bottom.kill()
+  if killed then
     vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
-    return
-  end
-
-  if float.alive() then
-    float.kill()
-    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
-    return
-  end
-
-  if bottom.alive() then
-    bottom.kill()
-    vim.notify('[sloat] terminal killed', vim.log.levels.INFO)
-    return
   end
 end
 

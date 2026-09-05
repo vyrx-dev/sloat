@@ -1,6 +1,6 @@
 # sloat
 
-**Minimal float/bottom terminal plugin for Neovim.** Persists across buffers. ~250 lines.
+**Minimal float/bottom terminal for Neovim.** Persists across buffers. ~250 lines.
 
 ![sloat](https://github.com/vyrx-dev/sloat/raw/main/assets/sloat.gif)
 
@@ -9,6 +9,7 @@
 - Toggle a centered **floating terminal**
 - Toggle a **bottom-split terminal**
 - Both terminals **persist** when switching buffers
+- Auto-detects **project root** (`.git`, `Makefile`, `package.json`)
 - Tiny footprint, **no dependencies**
 
 ## Requirements
@@ -31,6 +32,14 @@
 }
 ```
 
+### vim.pack (Neovim >= 0.12)
+
+```lua
+vim.pack.add('vyrx-dev/sloat')
+```
+
+Then call `require('sloat').setup()` in your config.
+
 ### vim-plug
 
 ```vim
@@ -39,42 +48,34 @@ Plug 'vyrx-dev/sloat'
 
 Then call `require('sloat').setup()` in your config.
 
-### packer.nvim
-
-```lua
-use {
-  'vyrx-dev/sloat',
-  config = function()
-    require('sloat').setup()
-  end,
-}
-```
-
 ## Configuration
 
-Setup is optional. Only needed if you want to change defaults:
+Setup is optional — defaults work out of the box:
 
 ```lua
 require('sloat').setup({
   float = {
-    width = 0.9,
-    height = 0.9,
-    border = 'single',
+    width = 0.5,
+    height = 0.6,
+    border = 'rounded', -- see :h nvim_open_win
   },
   bottom = {
-    height = 20,
+    height = 15,
   },
+  root_patterns = { '.git', 'Makefile', 'package.json', 'Cargo.toml', 'go.mod' },
 })
 ```
 
-When using lazy.nvim, pass options through the `opts` field in your plugin spec instead of calling `setup()` directly.
+When using lazy.nvim, pass options through the `opts` field instead of calling `setup()` directly.
+
+`root_patterns` controls where the terminal opens — sloat walks up from the current file to find the nearest match and uses that as the working directory.
 
 ## Usage
 
 ```
 :Sloat float    toggle floating terminal
 :Sloat bottom   toggle bottom terminal
-:Sloat kill     destroy both terminals
+:Sloat kill     destroy all terminals
 ```
 
 Press `<Esc><Esc>` to leave terminal mode.

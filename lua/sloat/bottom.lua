@@ -15,7 +15,7 @@ function M.toggle(cfg)
     term:open_buf(t.project_root(cfg.root_patterns))
   end
 
-  vim.cmd('botright new')
+  vim.cmd('botright split')
   term.win = vim.api.nvim_get_current_win()
 
   vim.api.nvim_win_set_buf(term.win, term.buf)

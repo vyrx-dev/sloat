@@ -19,16 +19,20 @@ Works without setup. All config is optional.
 >lua
     require('sloat').setup({
       float = {
-        width = 0.8,        -- float width (0-1 for %, or integer for cols)
-        height = 0.8,       -- float height (0-1 for %, or integer for rows)
+        width = 0.5,        -- fraction of editor width (0-1)
+        height = 0.6,       -- fraction of editor height (0-1)
         border = 'rounded', -- border style (see |nvim_open_win|)
       },
       bottom = {
         height = 15,        -- bottom split height in lines
       },
-      root_patterns = { '.git', 'Makefile', 'package.json' },
+      root_patterns = { '.git', 'Makefile', 'package.json', 'Cargo.toml', 'go.mod' },
     })
 <
+
+`root_patterns` determines the terminal's working directory. sloat walks
+upward from the current file to find the nearest match. Falls back to the
+current working directory.
 
 For `border` options, see |nvim_open_win|: `'none'`, `'single'`, `'double'`,
 `'rounded'`, `'solid'`, `'shadow'`, or a custom 8-char table.
@@ -43,7 +47,7 @@ COMMANDS                                                      *sloat-commands*
     Toggle bottom-split terminal.
 
 :Sloat kill                                                      *:Sloat-kill*
-    Kill the currently open terminal (or its hidden buffer).
+    Destroy all terminal buffers.
 
 ==============================================================================
 API                                                                *sloat-api*
@@ -55,7 +59,7 @@ require('sloat').bottom()                                     *sloat.bottom()*
     Toggle bottom terminal.
 
 require('sloat').kill()                                         *sloat.kill()*
-    Kill the active terminal.
+    Kill all terminals.
 
 require('sloat').setup({opts})                                 *sloat.setup()*
     Configure sloat. Optional.
